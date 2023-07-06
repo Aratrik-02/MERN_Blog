@@ -1,45 +1,67 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes} from 'react-router-dom'
 import './assets/style.css'
 import Navbar from './components/Navbar'
 import Register from './routes/Register'
 import Login from './routes/Login'
 import Home from './routes/Home'
-import { createContext, useEffect, useState } from "react"
+import React,{ createContext, useEffect, useState } from "react"
 import axios from 'axios'
 import CreatePost from './components/CreatePost'
 import Post from './components/Post'
 import EditPost from './components/EditPost'
+import AuthContext from './context/AuthContext'
+
 
 export const userContext = createContext()
 
+
 function App() {
+  const [token, setToken] = useState('');
   const [user, setUser] = useState({
     username: null,
     email: null
   })
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('jwtToken');
+    if (storedToken) {
+      setToken(storedToken); // Set the JWT token from local storage
+    }
+  }, []);
   // const URL = 'https://blog-server-iw2c.onrender.com'
   const URL = 'http://localhost:5000'
-  axios.defaults.withCredentials = true;
+
   useEffect(() => {
-    axios.get(`${URL}/`)
-    .then(user => {
-      setUser(user.data)
-    })
-    .catch(err => console.log(err))
-  }, [])
+    axios
+      .get(`${URL}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      console.log(token)
+  }, [token]);
+
   return (
     <userContext.Provider value = {user}>
+    <AuthContext.Provider value={{ token, setToken }}>
     <BrowserRouter>
       <Navbar />
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
-        <Route path="/create" element={<CreatePost />}></Route>
+        <Route path="/create" element={<CreatePost token={token} />}></Route>
         <Route path="/post/:id" element={<Post />}></Route>
         <Route path="/editpost/:id" element={<EditPost />}></Route>
       </Routes>
     </BrowserRouter>
+    </AuthContext.Provider>
     </userContext.Provider>
   )
 }

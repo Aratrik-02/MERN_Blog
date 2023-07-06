@@ -1,24 +1,33 @@
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import '.././assets/style.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+// import AuthContext from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    // const authContext = React.useContext(AuthContext);
+    const navigate = useNavigate();
     // const navigate = useNavigate()
     // const URL = 'https://blog-server-iw2c.onrender.com'
     const URL = 'http://localhost:5000'
-    axios.defaults.withCredentials = true;
+    // axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.post(`${URL}/login`, {email, password})
         .then(res => {
-            if(res.data === "Success") {
-                window.location.href = "/"
-                // navigate('/') otherwise register/login is not updated to logout
-            }
             console.log(res)
+            if(res?.data?.data === "Success") {
+                const jwtToken = res.data.token;
+                // authContext.setToken(jwtToken);
+                localStorage.setItem('jwtToken', jwtToken); 
+                // window.location.href = "/"
+                navigate('/') 
+                navigate(0)
+                // otherwise register/login is not updated to logout
+            }
         })
         .catch(err => console.log(err))
     }

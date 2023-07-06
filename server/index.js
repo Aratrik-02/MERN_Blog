@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const cors = require("cors")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const cookieParser = require('cookie-parser')
+// const cookieParser = require('cookie-parser')
 const multer = require('multer')
 const path = require('path')
 const UserModel = require('./models/User')
@@ -17,7 +17,7 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
-app.use(cookieParser())
+// app.use(cookieParser())
 app.use(express.static('public'))
 
 mongoose.connect(process.env.MONGODB_URL, {
@@ -31,22 +31,27 @@ mongoose.connect(process.env.MONGODB_URL, {
     console.log(err);
   });
 
+
 const verifyUser = (req, res, next) => {
-    const token = req.cookies.token;
-    if(!token) {
-        return res.json("The token is missing")
-    } else {
-        jwt.verify(token, "jwt-secret-key", (err, decoded) => {
-            if(err) {
-                return res.json("The token is wrong")
-            } else {
-                req.email = decoded.email;
-                req.username = decoded.username;
-                next()
-            }
-        })
+    const authHeader = req.headers.authorization;
+  
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json("Authorization token missing");
     }
-}
+  
+    const token = authHeader.substring(7); // Remove "Bearer " from the token
+  
+    jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+      if (err) {
+        return res.status(401).json("Invalid token");
+      } else {
+        req.email = decoded.email;
+        req.username = decoded.username;
+        next();
+      }
+    });
+  };
+  
 
 app.get('/',verifyUser, (req, res) => {
     return res.json({email: req.email, username: req.username})
@@ -65,26 +70,26 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
     console.log(email);
-    UserModel.findOne({email: email})
-    .then(user => {
-        if(user) {
-            bcrypt.compare(password, user.password, (err, response) => {
-                if(response) {
-                    const token = jwt.sign({email: user.email, username: user.username},
-                        "jwt-secret-key", {expiresIn: '1d'})
-                    res.cookie('token', token)
-                    return res.json("Success")
-                } else {
-                    return res.json("Password is incorrect");
-                }
-            })
+    UserModel.findOne({ email: email })
+      .then(user => {
+        if (user) {
+          bcrypt.compare(password, user.password, (err, response) => {
+            if (response) {
+              const token = jwt.sign({ email: user.email, username: user.username },
+                "jwt-secret-key", { expiresIn: '1d' });
+              return res.json({ token: token, data: "Success"});
+            } else {
+              return res.json("Password is incorrect");
+            }
+          });
         } else {
-            return res.json("User not exist")
+          return res.json("User does not exist");
         }
-    })
-})
+      });
+  });
+  
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -136,10 +141,10 @@ app.delete('/deletepost/:id', (req, res) => {
     .catch(err => res.json(err))
 })
 
-app.get('/logout', (req, res) => {
-    res.clearCookie('token');
-    return res.json("Success")
-})
+// app.get('/logout', (req, res) => {
+//     res.clearCookie('token');
+//     return res.json("Success")
+// })
 
 app.listen(5000, () => {
     console.log("Server is Running")

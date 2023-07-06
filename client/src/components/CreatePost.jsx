@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import {userContext} from '.././App'
+import { useNavigate } from "react-router-dom";
 
-function CreatePost() {
+function CreatePost({ token }) {
+    const navigate = useNavigate()
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
     const [file, setFile] = useState()
@@ -16,11 +18,20 @@ function CreatePost() {
         formData.append('description', description)
         formData.append('email', user.email)
         formData.append('file', file)
+        console.log(user.token)
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        };
 
-        axios.post(`${URL}/create`, formData)
+        axios.post(`${URL}/create`, formData, config)
         .then(res => {
             if(res.data === "Success") {
-                window.location.href = "/"
+              navigate('/')
+              navigate(0)
+                // window.location.href = "/"
             }
         })
         .catch(err => console.log(err))

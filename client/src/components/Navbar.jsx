@@ -1,21 +1,24 @@
 import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { userContext } from "../App"
-import axios from "axios"
+// import axios from "axios"
 
 function Navbar() {
     const user = useContext(userContext)
     const navigate = useNavigate()
     // const URL = 'https://blog-server-iw2c.onrender.com'
-    const URL = 'http://localhost:5000'
+    // const URL = 'http://localhost:5000'
     const handleLogout = () => {
-        axios.get(`${URL}/logout`)
-        .then(res => {
-            if(res.data === "Success"){
-                navigate(0)
-                navigate('/')
-            }
-        }).catch(err => console.log(err))
+        localStorage.removeItem('jwtToken');
+        navigate(0)
+        navigate('/')
+        // axios.get(`${URL}/logout`)
+        // .then(res => {
+        //     if(res.data === "Success"){
+        //         navigate(0)
+        //         navigate('/')
+        //     }
+        // }).catch(err => console.log(err))
     }
   return (
     <div className='navbar-header'>
