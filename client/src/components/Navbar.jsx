@@ -6,7 +6,8 @@ import axios from "axios"
 function Navbar() {
     const user = useContext(userContext)
     const navigate = useNavigate()
-    const URL = 'https://blog-server-iw2c.onrender.com'
+    // const URL = 'https://blog-server-iw2c.onrender.com'
+    const URL = 'http://localhost:5000'
     const handleLogout = () => {
         axios.get(`${URL}/logout`)
         .then(res => {

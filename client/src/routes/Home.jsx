@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 function Home() {
 
   const [posts, setPosts] = useState([])
-  const URL = 'https://blog-server-iw2c.onrender.com'
+  // const URL = 'https://blog-server-iw2c.onrender.com'
+  const URL = 'http://localhost:5000'
   useEffect(() => {
     axios.get(`${URL}/getposts`)
     .then(posts => {

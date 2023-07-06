@@ -6,57 +6,53 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const multer = require('multer')
 const path = require('path')
-require('dotenv').config()
-
 const UserModel = require('./models/User')
 const PostModel = require('./models/Post')
 
 const app = express()
-const URL = process.env.ORIGIN || "http://localhost:5173"
-app.use(express.static('Public'))
-
+require("dotenv").config();
 app.use(express.json())
-app.use(cookieParser())
 app.use(cors({
-    // origin: URL,
     origin: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
+app.use(cookieParser())
+app.use(express.static('public'))
 
-
-// app.use(cors)
-mongoose.connect(process.env.MONGODB_URL,{
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-}).then(()=>{
+  })
+  .then(() => {
     console.log("Connected to MongoDB");
-}).catch((err)=>{
+  })
+  .catch((err) => {
     console.log(err);
+  });
+
+const verifyUser = (req, res, next) => {
+    const token = req.cookies.token;
+    if(!token) {
+        return res.json("The token is missing")
+    } else {
+        jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+            if(err) {
+                return res.json("The token is wrong")
+            } else {
+                req.email = decoded.email;
+                req.username = decoded.username;
+                next()
+            }
+        })
+    }
+}
+
+app.get('/',verifyUser, (req, res) => {
+    return res.json({email: req.email, username: req.username})
 })
 
-// const verifyUser = (req, res, next) => {
-//     const token = req.cookies.token;
-//     if(!token) {
-//         return res.json("The token is missing")
-//     } else {
-//         jwt.verify(token, "jwt-secret-key", (err, decoded) => {
-//             if(err) {
-//                 return res.json("The token is wrong")
-//             } else {
-//                 req.email = decoded.email;
-//                 req.username = decoded.username;
-//                 next()
-//             }
-//         })
-//     }
-// }
 
-// app.get('/',verifyUser, (req, res) => {
-//     return res.json({email: req.email, username: req.username})
-// })
-
-//register
 app.post('/register', (req, res) => {
     const {username, email, password} = req.body;
     bcrypt.hash(password, 10)
@@ -64,9 +60,10 @@ app.post('/register', (req, res) => {
         UserModel.create({username, email, password: hash})
         .then(user => res.json(user))
         .catch(err => res.json(err))
-    }).catch(err => console.log(err))  
+    }).catch(err => console.log(err))
+    
 })
-//login
+
 app.post('/login', (req, res) => {
     const {email, password} = req.body;
     console.log(email);
@@ -75,9 +72,9 @@ app.post('/login', (req, res) => {
         if(user) {
             bcrypt.compare(password, user.password, (err, response) => {
                 if(response) {
-                    // const token = jwt.sign({email: user.email, username: user.username},
-                    //     "jwt-secret-key", {expiresIn: '1d'})
-                    // res.cookie('token', token)
+                    const token = jwt.sign({email: user.email, username: user.username},
+                        "jwt-secret-key", {expiresIn: '1d'})
+                    res.cookie('token', token)
                     return res.json("Success")
                 } else {
                     return res.json("Password is incorrect");
@@ -102,25 +99,10 @@ const upload = multer({
     storage: storage
 })
 
-//Create post
-// app.post('/create', verifyUser, upload.single('file'), (req, res) => {
-//     console.log(req.file);
-//     PostModel.create({
-//         title: req.body.title, 
-//         description: req.body.description, 
-//         file: req.file.filename, email: req.body.email
-//     })
-//         .then(result => res.json("Success"))
-//         .catch(err => res.json(err))
-// } )
-
-app.post('/create', upload.single('file'), (req, res) => {
-    console.log(req.file);
-    PostModel.create({
-        title: req.body.title, 
+app.post('/create', verifyUser, upload.single('file'), (req, res) => {
+    PostModel.create({title: req.body.title, 
         description: req.body.description, 
-        file: req.file.filename, email: req.body.email
-    })
+        file: req.file.filename, email: req.body.email})
         .then(result => res.json("Success"))
         .catch(err => res.json(err))
 } )
@@ -155,9 +137,11 @@ app.delete('/deletepost/:id', (req, res) => {
 })
 
 app.get('/logout', (req, res) => {
-    // res.clearCookie('token');
+    res.clearCookie('token');
     return res.json("Success")
 })
+
 app.listen(5000, () => {
-    console.log("Server is running on port 5000")
+    console.log("Server is Running")
 })
+

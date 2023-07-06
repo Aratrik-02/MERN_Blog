@@ -8,8 +8,8 @@ function Post() {
     const [post, setPost] = useState({})
     const navigate = useNavigate()
     const user = useContext(userContext)
-    const URL = 'https://blog-server-iw2c.onrender.com'
-
+    // const URL = 'https://blog-server-iw2c.onrender.com'
+    const URL = 'http://localhost:5000'
     useEffect(() => {
         axios.get(`${URL}/getpostbyid/`+id)
         .then(result=> setPost(result.data))
