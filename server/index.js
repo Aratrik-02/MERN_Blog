@@ -35,26 +35,26 @@ mongoose.connect(process.env.MONGODB_URL,{
     console.log(err);
 })
 
-const verifyUser = (req, res, next) => {
-    const token = req.cookies.token;
-    if(!token) {
-        return res.json("The token is missing")
-    } else {
-        jwt.verify(token, "jwt-secret-key", (err, decoded) => {
-            if(err) {
-                return res.json("The token is wrong")
-            } else {
-                req.email = decoded.email;
-                req.username = decoded.username;
-                next()
-            }
-        })
-    }
-}
+// const verifyUser = (req, res, next) => {
+//     const token = req.cookies.token;
+//     if(!token) {
+//         return res.json("The token is missing")
+//     } else {
+//         jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+//             if(err) {
+//                 return res.json("The token is wrong")
+//             } else {
+//                 req.email = decoded.email;
+//                 req.username = decoded.username;
+//                 next()
+//             }
+//         })
+//     }
+// }
 
-app.get('/',verifyUser, (req, res) => {
-    return res.json({email: req.email, username: req.username})
-})
+// app.get('/',verifyUser, (req, res) => {
+//     return res.json({email: req.email, username: req.username})
+// })
 
 //register
 app.post('/register', (req, res) => {
@@ -75,9 +75,9 @@ app.post('/login', (req, res) => {
         if(user) {
             bcrypt.compare(password, user.password, (err, response) => {
                 if(response) {
-                    const token = jwt.sign({email: user.email, username: user.username},
-                        "jwt-secret-key", {expiresIn: '1d'})
-                    res.cookie('token', token)
+                    // const token = jwt.sign({email: user.email, username: user.username},
+                    //     "jwt-secret-key", {expiresIn: '1d'})
+                    // res.cookie('token', token)
                     return res.json("Success")
                 } else {
                     return res.json("Password is incorrect");
@@ -103,7 +103,18 @@ const upload = multer({
 })
 
 //Create post
-app.post('/create', verifyUser, upload.single('file'), (req, res) => {
+// app.post('/create', verifyUser, upload.single('file'), (req, res) => {
+//     console.log(req.file);
+//     PostModel.create({
+//         title: req.body.title, 
+//         description: req.body.description, 
+//         file: req.file.filename, email: req.body.email
+//     })
+//         .then(result => res.json("Success"))
+//         .catch(err => res.json(err))
+// } )
+
+app.post('/create', upload.single('file'), (req, res) => {
     console.log(req.file);
     PostModel.create({
         title: req.body.title, 
@@ -144,7 +155,7 @@ app.delete('/deletepost/:id', (req, res) => {
 })
 
 app.get('/logout', (req, res) => {
-    res.clearCookie('token');
+    // res.clearCookie('token');
     return res.json("Success")
 })
 app.listen(5000, () => {
