@@ -17,7 +17,7 @@ function App() {
     username: null,
     email: null
   })
-  const URL = 'http://localhost:5000'
+  const URL = 'https://blog-server-iw2c.onrender.com'
   axios.defaults.withCredentials = true;
   useEffect(() => {
     axios.get(`${URL}/`)

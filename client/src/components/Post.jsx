@@ -8,7 +8,7 @@ function Post() {
     const [post, setPost] = useState({})
     const navigate = useNavigate()
     const user = useContext(userContext)
-    const URL = 'http://localhost:5000'
+    const URL = 'https://blog-server-iw2c.onrender.com'
 
     useEffect(() => {
         axios.get(`${URL}/getpostbyid/`+id)

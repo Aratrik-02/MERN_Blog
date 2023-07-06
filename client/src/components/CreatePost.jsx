@@ -7,8 +7,8 @@ function CreatePost() {
     const [description, setDescription] = useState()
     const [file, setFile] = useState()
     const user = useContext(userContext)
-    const URL = 'http://localhost:5000'
-
+    // const URL = 'http://localhost:5000'
+    const URL = 'https://blog-server-iw2c.onrender.com'
     const handleSubmit = (e) => {
         e.preventDefault()
         const formData = new FormData()

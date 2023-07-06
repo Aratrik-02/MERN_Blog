@@ -7,7 +7,7 @@ function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     // const navigate = useNavigate()
-    const URL = 'http://localhost:5000'
+    const URL = 'https://blog-server-iw2c.onrender.com'
     axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
         e.preventDefault()
