@@ -27,7 +27,10 @@ function Post() {
   return (
     <div className='post_container'>
         <div className='post_post'>
-            <img src={`${URL}/Images/${post.file}`} alt="" />
+            <img src=
+            {post.imageUrl}
+            // {`${URL}/Images/${post.file}`} 
+            alt="" />
             <h1>{post.title}</h1>
             <p>{post.description}</p>
             <div>

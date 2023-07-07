@@ -4,8 +4,8 @@ const cors = require("cors")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 // const cookieParser = require('cookie-parser')
-const multer = require('multer')
-const path = require('path')
+// const multer = require('multer')
+// const path = require('path')
 const UserModel = require('./models/User')
 const PostModel = require('./models/Post')
 
@@ -91,26 +91,48 @@ app.post('/login', (req, res) => {
   });
   
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'Public/Images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
-    }
-})
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'Public/Images')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+//     }
+// })
 
-const upload = multer({
-    storage: storage
-})
+// const upload = multer({
+//     storage: storage
+// })
 
-app.post('/create', verifyUser, upload.single('file'), (req, res) => {
-    PostModel.create({title: req.body.title, 
-        description: req.body.description, 
-        file: req.file.filename, email: req.body.email})
-        .then(result => res.json("Success"))
-        .catch(err => res.json(err))
-} )
+// app.post('/create', verifyUser, upload.single('file'), (req, res) => {
+//     PostModel.create({title: req.body.title, 
+//         description: req.body.description, 
+//         file: req.file.filename, email: req.body.email})
+//         .then(result => res.json("Success"))
+//         .catch(err => res.json(err))
+// } )
+
+function isValidImageUrl(url) {
+  const imageExtensions = /\.(jpeg|jpg|png|gif|bmp)$/i;
+  return imageExtensions.test(url);
+}
+
+app.post('/create', verifyUser, (req, res) => {
+  const imageUrl = req.body.imageUrl;
+  
+  if (!isValidImageUrl(imageUrl)) {
+    return res.status(400).json({ error: 'Invalid image URL' });
+  }
+  
+  PostModel.create({
+    title: req.body.title,
+    description: req.body.description,
+    imageUrl: imageUrl,
+    email: req.body.email
+  })
+    .then(result => res.json("Success"))
+    .catch(err => res.json(err));
+});
 
 app.get('/getposts', (req, res) => {
     PostModel.find()
@@ -130,7 +152,8 @@ app.put('/editpost/:id', (req, res) => {
     PostModel.findByIdAndUpdate(
         {_id: id},{ 
         title: req.body.title, 
-        description: req.body.description}
+        description: req.body.description,
+        imageUrl: req.body.image}
         ).then(result => res.json("Success"))
         .catch(err => res.json(err))
 })
