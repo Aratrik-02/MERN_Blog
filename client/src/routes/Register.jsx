@@ -8,8 +8,8 @@ function Register() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const navigate = useNavigate()
-    // const URL = 'https://blog-server-iw2c.onrender.com'
-    const URL = 'http://localhost:5000'
+    const URL = 'https://blog-server-iw2c.onrender.com'
+    // const URL = 'http://localhost:5000'
     axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
         e.preventDefault()

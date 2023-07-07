@@ -9,8 +9,8 @@ function CreatePost({ token }) {
   const [description, setDescription] = useState();
   const [imageUrl, setImageUrl] = useState(); // New state for image URL
   const user = useContext(userContext);
-  const URL = "http://localhost:5000";
-  // const URL = 'https://blog-server-iw2c.onrender.com'
+  // const URL = "http://localhost:5000";
+  const URL = 'https://blog-server-iw2c.onrender.com'
 
   const handleSubmit = (e) => {
     e.preventDefault();

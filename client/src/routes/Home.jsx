@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   const [posts, setPosts] = useState([]);
-  const URL = 'http://localhost:5000';
-  // const URL = 'https://blog-server-iw2c.onrender.com';
+  // const URL = 'http://localhost:5000';
+  const URL = 'https://blog-server-iw2c.onrender.com';
 
   useEffect(() => {
     axios
