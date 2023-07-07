@@ -37,7 +37,7 @@ function Home() {
             )}
             <div className='post_text'>
               <h2>{post.title.substring(0,20)}{post.title.length>20?"...":""}</h2>
-              <p>{post.description.substring(0,50)}{post.description.length>50?"...Read more":""}</p>
+              <p>{post.description.substring(0,100)}{post.description.length>100?"...Read more":""}</p>
             </div>
           </Link>
         ))}
