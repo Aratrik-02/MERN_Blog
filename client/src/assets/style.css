@@ -111,13 +111,13 @@ body{
 .posts_container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .posts_grid{
     width: 80%;
     display: grid;
     margin-top: 20px;
     grid-template-columns: repeat(2, 1fr);
-    
 }
 
 .post {
@@ -128,22 +128,25 @@ body{
     padding: 10px;
     display: flex;
     text-decoration: none;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255,255,255,0.2);
 }
+
 .post img {
     width: 350px;
     height: 200px;
     border-style: solid;
     border-radius: 25px;
-
 }
-.post .post_text {
+.post_text {
     width: 100%;
     margin-left: 10px;
     padding-left: 30px;
-    color: black;
-    background-color: rgba(255, 255, 255, 1);
 }
+
+.post_text h2, p{
+    color: #000;
+}
+
 .post_post {
     display: flex;
     flex-direction: column;
