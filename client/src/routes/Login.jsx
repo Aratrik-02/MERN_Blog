@@ -37,23 +37,24 @@ function Login() {
             <h2>Login </h2>
             <br />
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email:</label><br />
-                    <input type="email" placeholder='Enter Email'
+                <div className='user-box'>
+                    <label htmlFor="email"></label><br />
+                    <input type="email" placeholder='Email'
                     onChange={e => setEmail(e.target.value)}
                     />
                 </div>
                 <br />
-                <div>
-                    <label htmlFor="password">Password:</label><br />
-                    <input type="password" placeholder='********'
+                <div className='user-box'>
+                    <label htmlFor="password"></label><br />
+                    <input type="password" placeholder='Password'
                     onChange={e => setPassword(e.target.value)}
                     />
                 </div>
                 <button className='signup_btn'>Login</button>
             </form>
-            <br></br>
-            <p>Not Registered?</p>
+            {/* <br/>
+            <br/>
+            <p>Not Registered?</p> */}
             <Link to="/register"><button>Signup</button></Link>
         </div>
     </div>
