@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   // const URL = 'http://localhost:5000';
   const URL = 'https://blog-server-iw2c.onrender.com';
 
@@ -12,14 +13,22 @@ function Home() {
       .get(`${URL}/getposts`)
       .then((response) => {
         setPosts(response.data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   }, []);
 
   return (
     <div className='posts_container'>
+      {/* Render loader if isLoading state is true */}
+      {isLoading ? (
+        <div className='loader'>
+          <span>Loading...</span>
+        </div>
+      ) : (
       <div className='posts_grid'>
         {posts.map((post) => (
           <Link to={`/post/${post._id}`} className='post' key={post._id}>
@@ -33,6 +42,7 @@ function Home() {
           </Link>
         ))}
       </div>
+      )}
     </div>
   );
 }
