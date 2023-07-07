@@ -11,8 +11,8 @@ function Login() {
     // const authContext = React.useContext(AuthContext);
     const navigate = useNavigate();
     // const navigate = useNavigate()
-    // const URL = 'https://blog-server-iw2c.onrender.com'
-    const URL = 'http://localhost:5000'
+    const URL = 'https://blog-server-iw2c.onrender.com'
+    // const URL = 'http://localhost:5000'
     // axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
         e.preventDefault()

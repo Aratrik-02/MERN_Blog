@@ -28,8 +28,8 @@ function App() {
       setToken(storedToken); // Set the JWT token from local storage
     }
   }, []);
-  // const URL = 'https://blog-server-iw2c.onrender.com'
-  const URL = 'http://localhost:5000'
+  const URL = 'https://blog-server-iw2c.onrender.com'
+  // const URL = 'http://localhost:5000'
 
   useEffect(() => {
     axios

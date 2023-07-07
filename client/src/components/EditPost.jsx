@@ -8,8 +8,8 @@ function EditPost() {
     const [image, setImage] = useState()
     const {id} = useParams()
     const navigate = useNavigate()
-    // const URL = 'https://blog-server-iw2c.onrender.com'
-    const URL = 'http://localhost:5000'
+    const URL = 'https://blog-server-iw2c.onrender.com'
+    // const URL = 'http://localhost:5000'
     const handleSubmit = (e) => {
         e.preventDefault()
 
