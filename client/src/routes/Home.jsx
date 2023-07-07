@@ -27,8 +27,8 @@ function Home() {
               <img src={post.imageUrl} alt='Post' />
             )}
             <div className='post_text'>
-              <h2>{post.title}</h2>
-              <p>{post.description}</p>
+              <h2>{post.title.substring(0,20)}{post.title.length>20?"...":""}</h2>
+              <p>{post.description.substring(0,50)}{post.description.length>50?"...Read more":""}</p>
             </div>
           </Link>
         ))}
