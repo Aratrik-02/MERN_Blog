@@ -63,7 +63,8 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 400px;
+    width: 600px;
+    margin: auto;
     padding: 40px;
     transform: translate(-50%, -50%);
     background: rgba(0,0,0,.5);
@@ -72,14 +73,19 @@ body{
     border-radius: 10px;
 }
 
-.login-box h2 {
-    margin: 0 0 30px;
+.sign_button {
+    display: flex;
+    justify-content: space-around;
+}
+
+.signup_form h2 {
+    font-size: 35px;
     padding: 0;
-    color: #fff;
+    /* color: #fff; */
     text-align: center;
   }
 
-  .login-box .user-box {
+  .signup_form .user-box {
     position: relative;
   }
 
@@ -134,28 +140,11 @@ body{
     color: #000;
     font-weight: bold;
     border-radius: 5px;
-    box-shadow: 0 0 5px #03e9f4,
-                0 0 25px #03e9f4,
-                0 0 50px #03e9f4,
-                0 0 100px #03e9f4;
+    box-shadow: 0 0 5px rgba(3, 233, 244, 0.5),
+                0 0 10px rgba(3, 233, 244, 0.5),
+                0 0 15px rgba(3, 233, 244, 0.5),
+                0 0 25px rgba(3, 233, 244, 0.5);
   }
-
-/*.signup_form form button, .signup_form button {
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 1px solid rgb(216, 213, 213);
-}
-
-.signup_form form button {
-    background-color: rgb(17, 80, 227);
-    color: white;
-}
-.signup_form button {
-    background-color: rgb(3, 177, 18);
-    color: white;
-}*/
 
 /*-----------------------------------------------------------------*/
 

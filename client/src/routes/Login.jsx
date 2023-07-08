@@ -34,28 +34,26 @@ function Login() {
   return (
     <div className='signup_container'>
         <div className='signup_form'>
-            <h2>Login </h2>
-            <br />
+            <h2>Login</h2>
+            <br/>
             <form onSubmit={handleSubmit}>
                 <div className='user-box'>
-                    <label htmlFor="email"></label><br />
-                    <input type="email" placeholder='Email'
-                    onChange={e => setEmail(e.target.value)}
+                    <label htmlFor="email"></label>
+                    <input type="email" placeholder='Email' id="email"
+                        onChange={e => setEmail(e.target.value)}
                     />
                 </div>
-                <br />
                 <div className='user-box'>
-                    <label htmlFor="password"></label><br />
-                    <input type="password" placeholder='Password'
+                    <label htmlFor="password"></label>
+                    <input type="password" placeholder='Password' id="password"
                     onChange={e => setPassword(e.target.value)}
                     />
                 </div>
-                <button className='signup_btn'>Login</button>
+                <div className='sign_button'>
+                    <button className='signup_btn'>Login</button>
+                    <Link to="/register"><button>Signup</button></Link>
+                </div>
             </form>
-            {/* <br/>
-            <br/>
-            <p>Not Registered?</p> */}
-            <Link to="/register"><button>Signup</button></Link>
         </div>
     </div>
   )
