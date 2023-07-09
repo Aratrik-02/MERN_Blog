@@ -39,13 +39,13 @@ function Login() {
             <form onSubmit={handleSubmit}>
                 <div className='user-box'>
                     <label htmlFor="email"></label>
-                    <input type="email" placeholder='Email' id="email"
+                    <input type="email" placeholder='Email' id="email" required
                         onChange={e => setEmail(e.target.value)}
                     />
                 </div>
                 <div className='user-box'>
                     <label htmlFor="password"></label>
-                    <input type="password" placeholder='Password' id="password"
+                    <input type="password" placeholder='Password' id="password" required
                     onChange={e => setPassword(e.target.value)}
                     />
                 </div>

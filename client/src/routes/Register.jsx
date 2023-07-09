@@ -28,19 +28,19 @@ function Register() {
             <form onSubmit={handleSubmit}>
                 <div className='user-box'>
                     <label htmlFor="name"></label> <br />
-                    <input type="text" placeholder='Username'
+                    <input type="text" placeholder='Username' required
                     onChange={e => setUsername(e.target.value)}
                     />
                 </div>
                 <div className='user-box'>
                     <label htmlFor="email"></label><br />
-                    <input type="email" placeholder='Email'
+                    <input type="email" placeholder='Email' required
                     onChange={e => setEmail(e.target.value)}
                     />
                 </div>
                 <div className='user-box'>
                     <label htmlFor="password"></label><br />
-                    <input type="password" placeholder='Password'
+                    <input type="password" placeholder='Password' required
                     onChange={e => setPassword(e.target.value)}
                     />
                 </div>

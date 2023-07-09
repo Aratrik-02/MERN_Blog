@@ -1,3 +1,7 @@
+html{
+    height: 100%;
+}
+
 * {
     padding: 0px;
     margin: 0px;
@@ -8,6 +12,13 @@
 body{
     background-color: #080b27;
 }
+
+.post_container h2 {
+    font-size: 35px;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 15px;
+  }
 
 /*----------------------------navbar-------------------------------------*/
 
@@ -50,7 +61,7 @@ body{
     font-size: 20px;
 }
 
-/*-----------------------------------------------------------------*/
+/*----------------------------Register/Login-------------------------------------*/
 
 .signup_container, .post_container {
     display: flex;
@@ -77,13 +88,6 @@ body{
     display: flex;
     justify-content: space-around;
 }
-
-.signup_form h2 {
-    font-size: 35px;
-    padding: 0;
-    /* color: #fff; */
-    text-align: center;
-  }
 
   .signup_form .user-box {
     position: relative;
@@ -131,8 +135,9 @@ body{
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px
+    margin-top: 20px;
+    letter-spacing: 3px;
+    cursor: pointer;
   }
   
   .signup_form button:hover {
@@ -146,12 +151,7 @@ body{
                 0 0 25px rgba(3, 233, 244, 0.5);
   }
 
-/*-----------------------------------------------------------------*/
-
-.signup_btn {
-    margin-top: 8px;
-    cursor: pointer;
-}
+/*---------------------------Loader--------------------------------------*/
 
 .loader {
     display: flex;
@@ -171,27 +171,77 @@ body{
     color: white;
   }
 
-.post_form {
-    width: 50%;
-    border: 1px solid gray;
-    padding: 20px;
+/*--------------------------Create Post---------------------------------------*/
+
+.create_post {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    margin: 70px auto;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
 
-.post_form input, .post_form textarea, .post_form button {
+.create_post input, .create_post textarea {
     width: 100%;
-    margin: 10px 0px;
     padding: 8px;
 }
 
-.post_form .file {
-    border: 1px solid gray;
+.create_post input, .create_post textarea:focus {
+    outline: none;
 }
 
-.post_form button {
-    cursor: pointer;
-    background-color: green;
-    color: white;
+#title{
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: -3px;
 }
+
+#desc{
+    font-size: 15px;
+}
+
+#title::placeholder{
+    color: #000;
+}
+
+#link{
+    margin-top: 20px;
+}
+
+.create_post button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    background: rgba(0,0,0,.5);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 3px;
+    cursor: pointer;
+  }
+  
+  .create_post button:hover {
+    background: #03e9f4;
+    color: #000;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(3, 233, 244, 0.5),
+                0 0 10px rgba(3, 233, 244, 0.5),
+                0 0 15px rgba(3, 233, 244, 0.5),
+                0 0 25px rgba(3, 233, 244, 0.5);
+  }
+
+/*--------------------------Home Page---------------------------------------*/
 
 .posts_container {
     display: flex;

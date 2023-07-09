@@ -37,7 +37,7 @@ function EditPost() {
       <div className="post_form">
         <form onSubmit={handleSubmit}>
             <h2>Update Post</h2>
-          <input type="text" placeholder="Enter Title" value={title}
+          <input type="text" placeholder="Title" value={title}
           onChange={e => setTitle(e.target.value)}/>
           <textarea
             name="desc"
@@ -45,13 +45,13 @@ function EditPost() {
             cols="30"
             rows="10"
             value={description}
-            placeholder="Enter Description"
+            placeholder="Description"
             onChange={e => setDescription(e.target.value)}
           ></textarea>
           <input
             required
             type="text"
-            placeholder="Enter Image URL" // Use a text input for image URL
+            placeholder="Image URL" // Use a text input for image URL
             value={image}
             onChange={(e) => setImage(e.target.value)}
           />
