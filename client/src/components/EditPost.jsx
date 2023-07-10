@@ -34,27 +34,32 @@ function EditPost() {
 
   return (
     <div className="post_container">
-      <div className="post_form">
+      <div className="edit_post">
         <form onSubmit={handleSubmit}>
             <h2>Update Post</h2>
-          <input type="text" placeholder="Title" value={title}
-          onChange={e => setTitle(e.target.value)}/>
-          <textarea
-            name="desc"
-            id="desc"
-            cols="30"
-            rows="10"
-            value={description}
-            placeholder="Description"
-            onChange={e => setDescription(e.target.value)}
-          ></textarea>
-          <input
-            required
-            type="text"
-            placeholder="Image URL" // Use a text input for image URL
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
+            <input 
+            type="text" 
+            placeholder="Title" 
+            id="title" 
+            value={title}
+            onChange={e => setTitle(e.target.value)}/>
+            <textarea
+              name="desc"
+              id="desc"
+              cols="30"
+              rows="10"
+              value={description}
+              placeholder="Description"
+              onChange={e => setDescription(e.target.value)}
+            ></textarea>
+            <input
+              required
+              type="text"
+              placeholder="Image URL" // Use a text input for image URL
+              id="link"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
           <button>Update</button>
         </form>
       </div>

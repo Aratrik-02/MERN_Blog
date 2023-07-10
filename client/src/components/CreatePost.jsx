@@ -63,8 +63,8 @@ function CreatePost({ token }) {
           <input
             required
             type="text"
-            placeholder="Image URL"
-            id="link" // Use a text input for image URL
+            placeholder="Image URL" // Use a text input for image URL
+            id="link"
             onChange={(e) => setImageUrl(e.target.value)}
           />
           {imageUrl && <img src={imageUrl} alt="Post" style={{ width: '500px', marginTop: '10px' }} />} {/* Display the image if the URL is entered */}
