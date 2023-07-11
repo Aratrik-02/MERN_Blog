@@ -38,16 +38,16 @@ function Login() {
             <br/>
             <form onSubmit={handleSubmit}>
                 <div className='user-box'>
-                    <label htmlFor="email"></label>
-                    <input type="email" placeholder='Email' id="email" required
+                    <input className="form_field" type="email" placeholder='Email' id="email" required
                         onChange={e => setEmail(e.target.value)}
                     />
+                    <label htmlFor="email">Email</label>
                 </div>
                 <div className='user-box'>
-                    <label htmlFor="password"></label>
-                    <input type="password" placeholder='Password' id="password" required
+                    <input className="form_field" type="password" placeholder='Password' id="password" required
                     onChange={e => setPassword(e.target.value)}
                     />
+                    <label htmlFor="password">Password</label>
                 </div>
                 <div className='sign_button'>
                     <button className='signup_btn'>Login</button>
