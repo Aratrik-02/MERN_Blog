@@ -64,11 +64,11 @@ body{
     top: 50%;
     left: 50%;
     width: 400px;
-    padding: 40px;
+    padding: 40px 40px 40px 40px;
     transform: translate(-50%, -50%);
     background: rgba(0,0,0,.5);
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    box-shadow: 0 15px 25px rgba(0,0,0,1);
     border-radius: 10px;
 }
 
@@ -125,21 +125,38 @@ body{
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px
+    margin-top: 4px;
+    letter-spacing: 4px;
+    border-radius: 10px;
   }
   
   .signup_form button:hover {
     background: #03e9f4;
     color: #000;
     font-weight: bold;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #03e9f4,
+    /* box-shadow: 0 0 5px #03e9f4,
                 0 0 25px #03e9f4,
                 0 0 50px #03e9f4,
-                0 0 100px #03e9f4;
+                0 0 100px #03e9f4; */
   }
 
+.not-register{
+    margin-top:10px;
+    font-weight: bold;
+}
+.login-header{
+    text-align: center;
+}
+.signup_redirect{
+    color: #03e9f4;
+    font-weight: bold;
+    padding-left: 5px;
+}
+.login-input{
+    color: #03e9f4;
+    font-weight: bold;
+    padding-left: 5px;
+}
 /*.signup_form form button, .signup_form button {
     width: 100%;
     padding: 8px;
