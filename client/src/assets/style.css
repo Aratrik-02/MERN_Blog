@@ -317,7 +317,7 @@ body{
 }
 
 .post_post img {
-    margin-top: -100px;
+    /* margin-top: -100px; */
     border-radius: 25px;
     width:800px;
 }
