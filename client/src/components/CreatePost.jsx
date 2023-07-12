@@ -41,12 +41,13 @@ function CreatePost({ token }) {
 
   return (
     <div className="post_container">
-      <div className="post_form">
+      <div className="create_post">
         <form onSubmit={handleSubmit}>
           <h2>Create Post</h2>
           <input
             type="text"
-            placeholder="Enter Title"
+            placeholder="Title"
+            id="title"
             onChange={(e) => setTitle(e.target.value)}
             required
           />
@@ -56,16 +57,17 @@ function CreatePost({ token }) {
             id="desc"
             cols="30"
             rows="10"
-            placeholder="Enter Description"
+            placeholder="Description"
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <input
             required
             type="text"
-            placeholder="Enter Image URL" // Use a text input for image URL
+            placeholder="Image URL" // Use a text input for image URL
+            id="link"
             onChange={(e) => setImageUrl(e.target.value)}
           />
-          {imageUrl && <img src={imageUrl} alt="Post" style={{ width: '100%', marginTop: '10px' }} />} {/* Display the image if the URL is entered */}
+          {imageUrl && <img src={imageUrl} alt="Post" style={{ width: '500px', marginTop: '10px' }} />} {/* Display the image if the URL is entered */}
           <button>Post</button>
         </form>
       </div>

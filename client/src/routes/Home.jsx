@@ -26,7 +26,7 @@ function Home() {
       {/* Render loader if isLoading state is true */}
       {isLoading ? (
         <div className='loader'>
-          <span>Loading...</span>
+          <span>Loading ...</span>
         </div>
       ) : (
       <div className='posts_grid'>
