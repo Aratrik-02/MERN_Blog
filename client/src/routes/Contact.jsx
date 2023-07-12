@@ -1,50 +1,34 @@
 import React from 'react'
 const Contact = () => {
   return (
-    <div>
-        <div className="card">
-            <h2>Contact Us</h2>
-            <div className="row">
-                <div className="col">
-                <div className="form-group">
-                    <label>First Name</label>
-                    <input type="text" />
-                </div>
-                </div>
-
-                <div className="col">
-                <div className="form-group">
-                    <label>Surname</label>
-                    <input type="text" />
-                </div>
-                </div>
-
-                <div className="col">
-                <div className="form-group">
-                    <label>Email</label>
-                    <input type="text" />
-                </div>
-                </div>
-
-                <div className="col">
-                <div className="form-group">
-                    <label>Phone</label>
-                    <input type="text" />
-                </div>
-                </div>
-
-                <div className="col">
-                <div className="form-group">
-                    <label>Message</label>
-                    <textarea></textarea>
-                </div>
-                </div>
-
-                <div className="col">
-                <input type="submit" value="Submit" />
+    <div class="post_container">
+        <div class="form-container">
+            <div class="left-container">
+                <div class="left-inner-container">
+                    <h2>Let's Chat</h2>
+                    <p>Whether you have a question, want to start a project or            simply want to connect.</p>
+                    {/* <br> */}
+                    <p>Feel free to send me a message in the contact form</p>
                 </div>
             </div>
-        </div> 
+            <div class="right-container">
+                <div class="right-inner-container">
+                    <form action="#">
+                        <h2 class="lg-view">Contact</h2>
+                        {/* <p>* Required</p>
+                        <div class="social-container">
+                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                        </div> */}
+                        <input type="text" placeholder="Name *"  />
+                        <input type="email" placeholder="Email *" />
+                        <textarea rows="4" placeholder="Message"></textarea>
+                        <button>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
   )
 }
