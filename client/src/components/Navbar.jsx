@@ -30,7 +30,7 @@ function Navbar() {
                     <Link to="/create" className='link'>Create</Link>
                 : <></>
             }
-            <a href="" className='link'>Contact</a>
+            <a href="/contact" className='link'>Contact</a>
         </div>
         {
             user.username ?

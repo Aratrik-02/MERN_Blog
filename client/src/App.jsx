@@ -10,6 +10,7 @@ import CreatePost from './components/CreatePost'
 import Post from './components/Post'
 import EditPost from './components/EditPost'
 import AuthContext from './context/AuthContext'
+import Contact from './routes/Contact'
 
 
 export const userContext = createContext()
@@ -59,6 +60,7 @@ function App() {
         <Route path="/create" element={<CreatePost token={token} />}></Route>
         <Route path="/post/:id" element={<Post />}></Route>
         <Route path="/editpost/:id" element={<EditPost />}></Route>
+        <Route path='/contact' element={<Contact/>}/>
       </Routes>
     </BrowserRouter>
     </AuthContext.Provider>
