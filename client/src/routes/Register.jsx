@@ -27,22 +27,22 @@ function Register() {
             <br />
             <form onSubmit={handleSubmit}>
                 <div className='user-box'>
-                    <label htmlFor="name"></label> <br />
-                    <input type="text" placeholder='Username' required
+                    <input className="form_field" type="text" placeholder='Username' required
                     onChange={e => setUsername(e.target.value)}
                     />
+                    <label htmlFor="name">Username</label><br />
                 </div>
                 <div className='user-box'>
-                    <label htmlFor="email"></label><br />
-                    <input type="email" placeholder='Email' required
+                    <input className="form_field" type="email" placeholder='Email' required
                     onChange={e => setEmail(e.target.value)}
                     />
+                    <label htmlFor="email">Email</label><br />
                 </div>
                 <div className='user-box'>
-                    <label htmlFor="password"></label><br />
-                    <input type="password" placeholder='Password' required
+                    <input className="form_field" type="password" placeholder='Password' required
                     onChange={e => setPassword(e.target.value)}
                     />
+                    <label htmlFor="password">Password</label><br />
                 </div>
                 <div className='sign_button'>
                     <button>Sign up</button>

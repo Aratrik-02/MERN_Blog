@@ -84,6 +84,11 @@ body{
     border-radius: 10px;
 }
 
+.signup_form h2{
+    margin-bottom: 16px;
+    font-size: 35px;
+}
+
 .sign_button {
     display: flex;
     justify-content: space-around;
@@ -122,6 +127,16 @@ body{
     left: 0;
     color: #03e9f4;
     font-size: 12px;
+  }
+
+  .form_field::placeholder{
+    color: transparent;
+  }
+
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: 16px;
+    cursor: text;
+    top: 20px;
   }
 
   .signup_form button {
