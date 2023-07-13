@@ -67,7 +67,7 @@ function CreatePost({ token }) {
             id="link"
             onChange={(e) => setImageUrl(e.target.value)}
           />
-          {imageUrl && <img src={imageUrl} alt="Post" style={{ width: '500px', marginTop: '10px' }} />} {/* Display the image if the URL is entered */}
+          {imageUrl && <img src={imageUrl} alt="Post" className="post-image-show"/>} {/* Display the image if the URL is entered */}
           <button>Post</button>
         </form>
       </div>

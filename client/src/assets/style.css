@@ -509,6 +509,11 @@ textarea {
 .navbar a:hover {
   color: #117964;
 }
+
+.post-image-show{
+  width: 500px; 
+  margin-top: 10px;
+}
 @media screen and (max-width: 576px) {
   .posts_grid {
     grid-template-columns: repeat(1, 1fr);
@@ -535,6 +540,9 @@ textarea {
     margin-top: 5px;
     text-align: justify;
     font-size: 15px;
+  }
+  .post-image-show{
+    width:250px
   }
   .navbar {
     opacity: 0.95;
