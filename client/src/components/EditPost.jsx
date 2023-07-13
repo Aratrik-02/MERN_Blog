@@ -34,7 +34,7 @@ function EditPost() {
 
   return (
     <div className="post_container">
-      <div className="edit_post">
+      <div className="create_post">
         <form onSubmit={handleSubmit}>
             <h2>Update Post</h2>
             <input 

@@ -51,7 +51,7 @@ function Login() {
                 </div>
                 <div className='sign_button'>
                     <button className='signup_btn'>Login</button>
-                    <Link to="/register"><button>Signup</button></Link>
+                    <button><Link to="/register">Signup</Link></button>
                 </div>
             </form>
         </div>

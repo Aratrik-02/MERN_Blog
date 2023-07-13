@@ -46,7 +46,7 @@ function Register() {
                 </div>
                 <div className='sign_button'>
                     <button>Sign up</button>
-                    <Link to="/login"><button>Login</button></Link>
+                    <button><Link to="/login">Login</Link></button>
                 </div>
             </form>
         </div>
