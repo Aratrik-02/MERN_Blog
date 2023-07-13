@@ -63,7 +63,6 @@ function Navbar() {
             <span className="line line3"></span>
           </div>
           <ul className="menu-items">
-            {/* <li><a href="#">Home</a></li> */}
             <a href="/" className="link">
               Home
             </a>
@@ -95,7 +94,7 @@ function Navbar() {
             )}
           </ul>
 
-          <h1 className="logo">Blog app</h1>
+          <h1 className="logo">Blogg.io</h1>
         </div>
       </nav>
     </div>

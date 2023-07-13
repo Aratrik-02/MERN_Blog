@@ -518,6 +518,9 @@ textarea {
     width: 95%;
     display: block;
   }
+  .post img {
+    width: 320px;
+  }
   .post_text {
     width: 100%;
     margin-left: 0px;
@@ -526,11 +529,12 @@ textarea {
     padding-right: 15px;
   }
   .post-head {
-    font-size: 40px;
+    font-size: 20px;
   }
   .post-body {
+    margin-top: 5px;
     text-align: justify;
-    font-size: 20px;
+    font-size: 15px;
   }
   .navbar {
     opacity: 0.95;
@@ -621,7 +625,7 @@ textarea {
     position: absolute;
     top: 10px;
     right: 15px;
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .navbar-container input[type="checkbox"]:checked ~ .menu-items {
@@ -654,15 +658,17 @@ textarea {
     border-radius: 0;
   }
   .post_post>p{
-    font-size: 20px;
+    font-size: 18px;
     text-align: justify;
-    margin: 20px;
-  }
-  .post_post>h1{
-    font-size: 40px;
     margin: 0 20px;
   }
-
+  .post_post>h1{
+    font-size: 30px;
+    margin: 10px 20px 10px 20px;
+  }
+  .post_post button{
+    padding: 10px 20px;
+  }
   /* Create post */
   .create_post{
     width: 300px;
