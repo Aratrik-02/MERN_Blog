@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import { useState } from 'react'
 import '.././assets/style.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const [error, setError] = useState(null);
     // const authContext = React.useContext(AuthContext);
     const navigate = useNavigate();
     // const navigate = useNavigate()
@@ -27,6 +28,8 @@ function Login() {
                 navigate('/') 
                 navigate(0)
                 // otherwise register/login is not updated to logout
+            }else {
+                setError('Incorrect password. Please try again.');
             }
         })
         .catch(err => console.log(err))
@@ -48,6 +51,7 @@ function Login() {
                     onChange={e => setPassword(e.target.value)}
                     />
                     <label htmlFor="password">Password</label>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
                 </div>
                 <div className='sign_button'>
                     <button className='signup_btn'>Login</button>

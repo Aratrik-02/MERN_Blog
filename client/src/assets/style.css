@@ -524,7 +524,7 @@ textarea {
     display: block;
   }
   .post img {
-    width: 320px;
+    width: 325px;
   }
   .post_text {
     width: 100%;
@@ -687,5 +687,15 @@ textarea {
   }
   .create_post button{
     margin-left: 0;
+  }
+
+  /* Contact page */
+  .left-container{
+    display: none;
+  }
+}
+@media screen and (max-width: 376px) {
+  .post>img{
+    width: 300px;
   }
 }
