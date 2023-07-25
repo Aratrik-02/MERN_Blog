@@ -3,9 +3,6 @@ const mongoose = require('mongoose')
 const cors = require("cors")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-// const cookieParser = require('cookie-parser')
-// const multer = require('multer')
-// const path = require('path')
 const UserModel = require('./models/User')
 const PostModel = require('./models/Post')
 
@@ -17,7 +14,6 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
-// app.use(cookieParser())
 app.use(express.static('public'))
 
 mongoose.connect(process.env.MONGODB_URL, {
@@ -89,28 +85,6 @@ app.post('/login', (req, res) => {
         }
       });
   });
-  
-
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'Public/Images')
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
-//     }
-// })
-
-// const upload = multer({
-//     storage: storage
-// })
-
-// app.post('/create', verifyUser, upload.single('file'), (req, res) => {
-//     PostModel.create({title: req.body.title, 
-//         description: req.body.description, 
-//         file: req.file.filename, email: req.body.email})
-//         .then(result => res.json("Success"))
-//         .catch(err => res.json(err))
-// } )
 
 function isValidImageUrl(url) {
   const imageExtensions = /\.(jpeg|jpg|png|gif|bmp)$/i;
@@ -163,11 +137,6 @@ app.delete('/deletepost/:id', (req, res) => {
     .then(result => res.json("Success"))
     .catch(err => res.json(err))
 })
-
-// app.get('/logout', (req, res) => {
-//     res.clearCookie('token');
-//     return res.json("Success")
-// })
 
 app.listen(5000, () => {
     console.log("Server is Running")
