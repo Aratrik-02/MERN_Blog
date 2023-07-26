@@ -694,8 +694,3 @@ textarea {
     display: none;
   }
 }
-@media screen and (max-width: 376px) {
-  .post>img{
-    width: 300px;
-  }
-}
